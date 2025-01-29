@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\volodymyr.petryshyn\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0438\\ArkanParking\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0DBA95BF-14F2-4E07-9784-168BC5BC515A}|ArkanParking.Tests\\ArkanParking.BL.Tests.csproj|c:\\users\\volodymyr.petryshyn\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0438\\arkanparking\\arkanparking.tests\\faketimerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DBA95BF-14F2-4E07-9784-168BC5BC515A}|ArkanParking.Tests\\ArkanParking.BL.Tests.csproj|solutionrelative:arkanparking.tests\\faketimerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DBA95BF-14F2-4E07-9784-168BC5BC515A}|ArkanParking.Tests\\ArkanParking.BL.Tests.csproj|c:\\users\\volodymyr.petryshyn\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0438\\arkanparking\\arkanparking.tests\\logservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DBA95BF-14F2-4E07-9784-168BC5BC515A}|ArkanParking.Tests\\ArkanParking.BL.Tests.csproj|solutionrelative:arkanparking.tests\\logservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DBA95BF-14F2-4E07-9784-168BC5BC515A}|ArkanParking.Tests\\ArkanParking.BL.Tests.csproj|c:\\users\\volodymyr.petryshyn\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0438\\arkanparking\\arkanparking.tests\\parkingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DBA95BF-14F2-4E07-9784-168BC5BC515A}|ArkanParking.Tests\\ArkanParking.BL.Tests.csproj|solutionrelative:arkanparking.tests\\parkingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ParkingServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\volodymyr.petryshyn\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0438\\ArkanParking\\ArkanParking.Tests\\ParkingServiceTests.cs",
+              "RelativeDocumentMoniker": "ArkanParking.Tests\\ParkingServiceTests.cs",
+              "ToolTip": "C:\\Users\\volodymyr.petryshyn\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0438\\ArkanParking\\ArkanParking.Tests\\ParkingServiceTests.cs",
+              "RelativeToolTip": "ArkanParking.Tests\\ParkingServiceTests.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T15:58:32.132Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LogServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\volodymyr.petryshyn\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0438\\ArkanParking\\ArkanParking.Tests\\LogServiceTests.cs",
+              "RelativeDocumentMoniker": "ArkanParking.Tests\\LogServiceTests.cs",
+              "ToolTip": "C:\\Users\\volodymyr.petryshyn\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0438\\ArkanParking\\ArkanParking.Tests\\LogServiceTests.cs",
+              "RelativeToolTip": "ArkanParking.Tests\\LogServiceTests.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T15:58:20.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FakeTimerService.cs",
+              "DocumentMoniker": "C:\\Users\\volodymyr.petryshyn\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0438\\ArkanParking\\ArkanParking.Tests\\FakeTimerService.cs",
+              "RelativeDocumentMoniker": "ArkanParking.Tests\\FakeTimerService.cs",
+              "ToolTip": "C:\\Users\\volodymyr.petryshyn\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0438\\ArkanParking\\ArkanParking.Tests\\FakeTimerService.cs",
+              "RelativeToolTip": "ArkanParking.Tests\\FakeTimerService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T15:58:06.04Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

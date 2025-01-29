@@ -1,0 +1,4 @@
+C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL\obj\Debug\net6.0\ArkanParking.BL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL\obj\Debug\net6.0\ArkanParking.BL.AssemblyInfoInputs.cache
+C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL\obj\Debug\net6.0\ArkanParking.BL.AssemblyInfo.cs
+C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL\obj\Debug\net6.0\ArkanParking.BL.csproj.CoreCompileInputs.cache

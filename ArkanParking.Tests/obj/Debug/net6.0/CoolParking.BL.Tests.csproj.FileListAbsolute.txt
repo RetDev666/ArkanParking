@@ -1,0 +1,6 @@
+C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL.Tests\bin\Debug\net6.0\CoverletSourceRootsMapping
+C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL.Tests\obj\Debug\net6.0\CoolParking.BL.Tests.csproj.AssemblyReference.cache
+C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL.Tests\obj\Debug\net6.0\CoolParking.BL.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL.Tests\obj\Debug\net6.0\CoolParking.BL.Tests.AssemblyInfoInputs.cache
+C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL.Tests\obj\Debug\net6.0\CoolParking.BL.Tests.AssemblyInfo.cs
+C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL.Tests\obj\Debug\net6.0\CoolParking.BL.Tests.csproj.CoreCompileInputs.cache
