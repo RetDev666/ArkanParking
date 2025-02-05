@@ -9,9 +9,9 @@ public class TransactionInfo
 {
     public DateTime Timestamp { get; }
     public string VehicleId { get; }
-    public double Sum { get; }
+    public decimal Sum { get; }
 
-    public TransactionInfo(string vehicleId, double amount)
+    public TransactionInfo(string vehicleId, decimal amount)
     {
         Timestamp = DateTime.Now;
         VehicleId = vehicleId;

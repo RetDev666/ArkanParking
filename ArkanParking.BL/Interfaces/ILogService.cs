@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Transactions;
+using ArkanParking.BL.Models;
 
 namespace ArkanParking.BL.Interfaces
 {
@@ -9,5 +10,7 @@ namespace ArkanParking.BL.Interfaces
         void Write(string logInfo);
         string Read();
         void LogTransaction(Transaction p0);
+        string ReadLog();
+        void LogTransaction(TransactionInfo p0);
     }
 }

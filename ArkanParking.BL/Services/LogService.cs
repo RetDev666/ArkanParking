@@ -3,6 +3,7 @@ using ArkanParking.BL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Transactions;
+using ArkanParking.BL.Models;
 
 namespace ArkanParking.BL.Services;
 // TODO: створи клас LogService, що реалізує інтерфейс ILogService.
@@ -24,6 +25,16 @@ public class LogService : ILogService
     public void LogTransaction(Transaction transaction)
     {
         _currentTransactions.Add(transaction);
+    }
+
+    public string ReadLog()
+    {
+        return _logServiceImplementation.ReadLog();
+    }
+
+    public void LogTransaction(TransactionInfo p0)
+    {
+        _logServiceImplementation.LogTransaction(p0);
     }
 
     public void WriteLogsToFile()

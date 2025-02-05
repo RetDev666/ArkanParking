@@ -15,114 +15,97 @@ namespace ArkanParking.BL.Services;
 // Інші деталі реалізації залишаються на твій розсуд, але вони повинні відповідати вимогам інтерфейсу 
 // та тестам. Наприклад, у ParkingServiceTests можна знайти необхідний формат конструктора та правила валідації.
 
-public class ParkingService<FakeTimerService> : IParkingService
-{
-    private List<Vehicle> _vehicles;
-    private double _parkingBalance;
-    private ILogService _logService;
-    private IParkingService _parkingServiceImplementation;
-
-    public ParkingService(ILogService logService)
+public class ParkingService : IParkingService
     {
-        _vehicles = new List<Vehicle>();
-        _parkingBalance = 0;
-        _logService = logService;
-    }
+        private List<Vehicle> _vehicles;
+        private decimal _parkingBalance;
+        private readonly ILogService _logService;
+        private IParkingService _parkingServiceImplementation;
 
-    public ParkingService(FakeTimerService withdrawTimer, FakeTimerService logTimer, ILogService logService)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool ParkVehicle(Vehicle vehicle)
-    {
-        if (_vehicles.Count >= Settings.Capacity)
-            return false; // Паркінг заповнений
-
-        _vehicles.Add(vehicle);
-        return true;
-    }
-
-    public decimal GetBalance()
-    {
-        return _parkingServiceImplementation.GetBalance();
-    }
-
-    public int GetCapacity()
-    {
-        return _parkingServiceImplementation.GetCapacity();
-    }
-
-    public int GetFreePlaces()
-    {
-        return _parkingServiceImplementation.GetFreePlaces();
-    }
-
-    public ReadOnlyCollection<Vehicle> GetVehicles()
-    {
-        return _parkingServiceImplementation.GetVehicles();
-    }
-
-    public void AddVehicle(Vehicle vehicle)
-    {
-        _parkingServiceImplementation.AddVehicle(vehicle);
-    }
-
-    void IParkingService.RemoveVehicle(string vehicleId)
-    {
-        _parkingServiceImplementation.RemoveVehicle(vehicleId);
-    }
-
-    public void TopUpVehicle(string vehicleId, decimal sum)
-    {
-        _parkingServiceImplementation.TopUpVehicle(vehicleId, sum);
-    }
-
-    public TransactionInfo[] GetLastParkingTransactions()
-    {
-        return _parkingServiceImplementation.GetLastParkingTransactions();
-    }
-
-    public string ReadFromLog()
-    {
-        return _parkingServiceImplementation.ReadFromLog();
-    }
-
-    public bool RemoveVehicle(string vehicleId)
-    {
-        var vehicle = _vehicles.FirstOrDefault(v => v.Id == vehicleId);
-        if (vehicle == null) return false;
-
-        _vehicles.Remove(vehicle);
-        return true;
-    }
-
-    public void DeductParkingFee()
-    {
-        foreach (var vehicle in _vehicles)
+        public ParkingService(ILogService logService)
         {
-            double fee = Settings.Tariffs[vehicle.Type];
-            if (vehicle.Balance >= fee)
+            _vehicles = new List<Vehicle>();
+            _parkingBalance = 0;
+            _logService = logService;
+        }
+
+        public bool ParkVehicle(Vehicle vehicle)
+        {
+            if (_vehicles.Count >= Settings.Capacity)
+                throw new InvalidOperationException("Паркінг переповнений.");
+
+            _vehicles.Add(vehicle);
+            return true;
+        }
+
+        public decimal GetBalance() => _parkingBalance;
+
+        public int GetCapacity() => Settings.Capacity;
+
+        public int GetFreePlaces() => Settings.Capacity - _vehicles.Count;
+
+        public ReadOnlyCollection<Vehicle> GetVehicles() => _vehicles.AsReadOnly();
+        public void AddVehicle(Vehicle vehicle)
+        {
+            _parkingServiceImplementation.AddVehicle(vehicle);
+        }
+
+        void IParkingService.RemoveVehicle(string vehicleId)
+        {
+            _parkingServiceImplementation.RemoveVehicle(vehicleId);
+        }
+
+        public void TopUpVehicle(string vehicleId, decimal sum)
+        {
+            var vehicle = _vehicles.FirstOrDefault(v => v.Id == vehicleId);
+            if (vehicle == null)
+                throw new InvalidOperationException("Транспортний засіб не знайдено.");
+
+            vehicle.TopUpBalance(sum);
+        }
+
+        public TransactionInfo[] GetLastParkingTransactions()
+        {
+            return _parkingServiceImplementation.GetLastParkingTransactions();
+        }
+
+        public bool RemoveVehicle(string vehicleId)
+        {
+            var vehicle = _vehicles.FirstOrDefault(v => v.Id == vehicleId);
+            if (vehicle == null)
+                throw new InvalidOperationException("Транспортний засіб не знайдено.");
+
+            if (vehicle.Balance < 0)
+                throw new InvalidOperationException("Не можна видалити транспортний засіб із боргом.");
+
+            _vehicles.Remove(vehicle);
+            return true;
+        }
+
+        public void DeductParkingFee()
+        {
+            foreach (var vehicle in _vehicles)
             {
-                vehicle.Deduct(fee);
-                _parkingBalance += fee;
-                _logService.LogTransaction(new Transaction(vehicle.Id, fee));
-            }
-            else
-            {
-                // Розрахунок штрафу
-                double penaltyFee = fee + (fee - vehicle.Balance) * Settings.PenaltyCoefficient;
-                vehicle.Deduct(penaltyFee);
-                _parkingBalance += penaltyFee;
-                _logService.LogTransaction(new Transaction(vehicle.Id, penaltyFee));
+                decimal fee = Settings.Tariffs[vehicle.Type];
+                if (vehicle.Balance >= fee)
+                {
+                    vehicle.Deduct(fee);
+                    _parkingBalance += fee;
+                    _logService.LogTransaction(new TransactionInfo(vehicle.Id, fee));
+                }
+                else
+                {
+                    decimal penaltyFee = fee + (fee - vehicle.Balance) * (decimal)Settings.PenaltyCoefficient;
+                    vehicle.Deduct(penaltyFee);
+                    _parkingBalance += penaltyFee;
+                    _logService.LogTransaction(new TransactionInfo(vehicle.Id, penaltyFee));
+                }
             }
         }
-    }
 
-    public double GetParkingBalance() => _parkingBalance;
-    public int GetAvailableSpaces() => Settings.Capacity - _vehicles.Count;
-    public void Dispose()
-    {
-        _parkingServiceImplementation.Dispose();
+        public string ReadFromLog() => _logService.ReadLog();
+        public void Dispose()
+        {
+            _parkingServiceImplementation.Dispose();
+        }
     }
-}

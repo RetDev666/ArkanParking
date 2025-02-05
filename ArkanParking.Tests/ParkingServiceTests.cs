@@ -10,7 +10,7 @@ namespace ArkanParking.BL.Tests
 {
     public class ParkingServiceTests : IDisposable
     {
-        readonly ParkingService<> _parkingService;
+        readonly ParkingService _parkingService;
         readonly FakeTimerService _withdrawTimer;
         readonly FakeTimerService _logTimer;
         readonly ILogService _logService;
@@ -20,7 +20,7 @@ namespace ArkanParking.BL.Tests
             _withdrawTimer = new FakeTimerService();
             _logTimer = new FakeTimerService();
             _logService = A.Fake<ILogService>();
-            _parkingService = new ParkingService<>(_withdrawTimer, _logTimer, _logService);
+            _parkingService = new ParkingService(_withdrawTimer, _logTimer, _logService);
         }
 
         public void Dispose()
@@ -31,7 +31,7 @@ namespace ArkanParking.BL.Tests
         [Fact]
         public void Parking_IsSingelton()
         {
-            var newParkingService = new ParkingService<>(_withdrawTimer, _logTimer, _logService);
+            var newParkingService = new ParkingService(_withdrawTimer, _logTimer, _logService);
             var vehicle = new Vehicle("AA-0001-AA", VehicleType.Truck, 100);
             _parkingService.AddVehicle(vehicle);  
 

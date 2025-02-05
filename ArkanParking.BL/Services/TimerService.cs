@@ -10,52 +10,38 @@ namespace ArkanParking.BL.Services;
 
 public class TimerService : ITimerService
 {
-    private readonly Timer _deductTimer;
-    private readonly Timer _logTimer;
-    private readonly Action _deductAction;
-    private readonly Action _logAction;
-    private ITimerService _timerServiceImplementation;
-
-    public TimerService(Action deductAction, Action logAction)
-    {
-        _deductAction = deductAction;
-        _logAction = logAction;
-
-        // Таймер для списання коштів
-        _deductTimer = new Timer(Settings.FeePeriodInSeconds * 1000);
-        _deductTimer.Elapsed += (sender, args) => _deductAction();
-
-        // Таймер для запису логів
-        _logTimer = new Timer(Settings.LogPeriodInSeconds * 1000);
-        _logTimer.Elapsed += (sender, args) => _logAction();
-    }
+    private readonly Timer _timer;
 
     public event ElapsedEventHandler Elapsed
     {
-        add => _timerServiceImplementation.Elapsed += value;
-        remove => _timerServiceImplementation.Elapsed -= value;
+        add => _timer.Elapsed += value;
+        remove => _timer.Elapsed -= value;
     }
 
     public double Interval
     {
-        get => _timerServiceImplementation.Interval;
-        set => _timerServiceImplementation.Interval = value;
+        get => _timer.Interval;
+        set => _timer.Interval = value;
+    }
+
+    public TimerService(double interval)
+    {
+        _timer = new Timer(interval);
+        _timer.AutoReset = true; // Таймер автоматично повторюється
     }
 
     public void Start()
     {
-        _deductTimer.Start();
-        _logTimer.Start();
+        _timer.Start();
     }
 
     public void Stop()
     {
-        _deductTimer.Stop();
-        _logTimer.Stop();
+        _timer.Stop();
     }
 
     public void Dispose()
     {
-        _deductTimer.Dispose();
+        _timer.Dispose();
     }
 }

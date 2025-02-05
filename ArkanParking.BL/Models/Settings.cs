@@ -13,11 +13,11 @@ public static class Settings
     public static int LogPeriodInSeconds { get; } = 60;
     public static double PenaltyCoefficient { get; } = 2.5;
 
-    public static readonly Dictionary<VehicleType, double> Tariffs = new()
+    public static readonly Dictionary<VehicleType, decimal> Tariffs = new()
     {
-        { VehicleType.PassengerCar, 2 },
-        { VehicleType.Truck, 5 },
-        { VehicleType.Bus, 3.5 },
-        { VehicleType.Motorcycle, 1 }
+        { VehicleType.PassengerCar, 2m },
+        { VehicleType.Truck, 5m },
+        { VehicleType.Bus, 3.5m },
+        { VehicleType.Motorcycle, 1m }
     };
 }

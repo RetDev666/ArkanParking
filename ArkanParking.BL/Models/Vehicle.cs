@@ -14,9 +14,9 @@ public class Vehicle
 {
     public string Id { get; private set; }
     public VehicleType Type { get; private set; }
-    public double Balance { get; private set; }
+    public decimal Balance { get; private set; }
 
-    public Vehicle(string id, VehicleType type, double initialBalance)
+    public Vehicle(string id, VehicleType type, decimal initialBalance)
     {
         if (!IsValidId(id))
             throw new ArgumentException("Invalid vehicle ID format.");
@@ -31,13 +31,13 @@ public class Vehicle
         return System.Text.RegularExpressions.Regex.IsMatch(id, "^[A-Z]{2}-\\d{4}-[A-Z]{2}$");
     }
 
-    public void TopUpBalance(double amount)
+    public void TopUpBalance(decimal amount)
     {
         if (amount <= 0) throw new ArgumentException("Amount must be positive.");
         Balance += amount;
     }
 
-    public void Deduct(double amount)
+    public void Deduct(decimal amount)
     {
         Balance -= amount;
     }
