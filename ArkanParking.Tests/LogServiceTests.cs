@@ -2,6 +2,8 @@
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using ArkanParking.BL.Interfaces;
+using ArkanParking.BL.Services;
 using Xunit;
 
 namespace ArkanParking.BL.Tests

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/user/Desktop/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj": {}
+    "/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj": {}
   },
   "projects": {
-    "/Users/user/Desktop/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj": {
+    "/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/user/Desktop/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj",
+        "projectUniqueName": "/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj",
         "projectName": "ArkanParking.BL",
-        "projectPath": "/Users/user/Desktop/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj",
+        "projectPath": "/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj",
         "packagesPath": "/Users/user/.nuget/packages/",
-        "outputPath": "/Users/user/Desktop/ArkanParking/ArkanParking.BL/obj/",
+        "outputPath": "/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/user/.nuget/NuGet/NuGet.Config"

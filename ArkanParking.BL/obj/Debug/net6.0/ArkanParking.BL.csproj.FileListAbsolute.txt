@@ -1,4 +1,9 @@
-C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL\obj\Debug\net6.0\ArkanParking.BL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL\obj\Debug\net6.0\ArkanParking.BL.AssemblyInfoInputs.cache
-C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL\obj\Debug\net6.0\ArkanParking.BL.AssemblyInfo.cs
-C:\Users\volodymyr.petryshyn\Desktop\Програмісти\CoolParking\CoolParking.BL\obj\Debug\net6.0\ArkanParking.BL.csproj.CoreCompileInputs.cache
+C:/Users/volodymyr.petryshyn/Desktop/Програмісти/CoolParking/CoolParking.BL/obj/Debug/net6.0/ArkanParking.BL.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/volodymyr.petryshyn/Desktop/Програмісти/CoolParking/CoolParking.BL/obj/Debug/net6.0/ArkanParking.BL.AssemblyInfoInputs.cache
+C:/Users/volodymyr.petryshyn/Desktop/Програмісти/CoolParking/CoolParking.BL/obj/Debug/net6.0/ArkanParking.BL.AssemblyInfo.cs
+C:/Users/volodymyr.petryshyn/Desktop/Програмісти/CoolParking/CoolParking.BL/obj/Debug/net6.0/ArkanParking.BL.csproj.CoreCompileInputs.cache
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ArkanParking.BL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ArkanParking.BL.AssemblyInfoInputs.cache
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ArkanParking.BL.AssemblyInfo.cs
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ArkanParking.BL.csproj.CoreCompileInputs.cache
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ArkanParking.BL.sourcelink.json

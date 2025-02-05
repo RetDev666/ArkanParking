@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UL8whclXWCk=",
+  "dgSpecHash": "nvdVE2d887U=",
   "success": true,
-  "projectFilePath": "/Users/user/Desktop/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj",
+  "projectFilePath": "/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj",
   "expectedPackageFiles": [
     "/Users/user/.nuget/packages/microsoft.netcore.app.ref/6.0.36/microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
     "/Users/user/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.36/microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512"

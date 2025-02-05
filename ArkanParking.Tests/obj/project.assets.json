@@ -6698,11 +6698,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/user/Desktop/ArkanParking/ArkanParking.Tests/ArkanParking.BL.Tests.csproj",
+      "projectUniqueName": "/Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/ArkanParking.BL.Tests.csproj",
       "projectName": "ArkanParking.BL.Tests",
-      "projectPath": "/Users/user/Desktop/ArkanParking/ArkanParking.Tests/ArkanParking.BL.Tests.csproj",
+      "projectPath": "/Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/ArkanParking.BL.Tests.csproj",
       "packagesPath": "/Users/user/.nuget/packages/",
-      "outputPath": "/Users/user/Desktop/ArkanParking/ArkanParking.Tests/obj/",
+      "outputPath": "/Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/user/.nuget/NuGet/NuGet.Config"
@@ -6717,8 +6717,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/user/Desktop/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj": {
-              "projectPath": "/Users/user/Desktop/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj"
+            "/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj": {
+              "projectPath": "/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/ArkanParking.BL.csproj"
             }
           }
         }

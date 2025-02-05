@@ -3,12 +3,14 @@ using System.Linq;
 
 using Xunit;
 using FakeItEasy;
-
+using ArkanParking.BL.Models;  // Для класів Vehicle, VehicleType
+using ArkanParking.BL.Services;  // Для ParkingService
+using ArkanParking.BL.Interfaces; 
 namespace ArkanParking.BL.Tests
 {
     public class ParkingServiceTests : IDisposable
     {
-        readonly ParkingService _parkingService;
+        readonly ParkingService<> _parkingService;
         readonly FakeTimerService _withdrawTimer;
         readonly FakeTimerService _logTimer;
         readonly ILogService _logService;
@@ -18,7 +20,7 @@ namespace ArkanParking.BL.Tests
             _withdrawTimer = new FakeTimerService();
             _logTimer = new FakeTimerService();
             _logService = A.Fake<ILogService>();
-            _parkingService = new ParkingService(_withdrawTimer, _logTimer, _logService);
+            _parkingService = new ParkingService<>(_withdrawTimer, _logTimer, _logService);
         }
 
         public void Dispose()
@@ -29,7 +31,7 @@ namespace ArkanParking.BL.Tests
         [Fact]
         public void Parking_IsSingelton()
         {
-            var newParkingService = new ParkingService(_withdrawTimer, _logTimer, _logService);
+            var newParkingService = new ParkingService<>(_withdrawTimer, _logTimer, _logService);
             var vehicle = new Vehicle("AA-0001-AA", VehicleType.Truck, 100);
             _parkingService.AddVehicle(vehicle);  
 
@@ -149,7 +151,7 @@ namespace ArkanParking.BL.Tests
 
             var lastParkingTransactions = _parkingService.GetLastParkingTransactions();
 
-            Assert.Equal(17m, lastParkingTransactions.Sum(tr => tr.Sum));
+            Assert.Equal((double)17m, lastParkingTransactions.Sum(tr => tr.Sum));
         }
 
         [Fact]

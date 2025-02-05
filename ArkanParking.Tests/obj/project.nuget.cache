@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I25FJp69jxQ=",
+  "dgSpecHash": "mV0U1zjphzg=",
   "success": true,
-  "projectFilePath": "/Users/user/Desktop/ArkanParking/ArkanParking.Tests/ArkanParking.BL.Tests.csproj",
+  "projectFilePath": "/Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/ArkanParking.BL.Tests.csproj",
   "expectedPackageFiles": [
     "/Users/user/.nuget/packages/castle.core/4.3.1/castle.core.4.3.1.nupkg.sha512",
     "/Users/user/.nuget/packages/coverlet.collector/3.1.2/coverlet.collector.3.1.2.nupkg.sha512",
