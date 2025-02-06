@@ -13,18 +13,34 @@ namespace ArkanParking.BL.Services;
 
 public class LogService : ILogService
 {
-    private readonly string _logFilePath = "Transactions.log";
-    private List<Transaction> _currentTransactions;
+    public string LogPath { get; }
+    private readonly StreamWriter streamWriter;
     private ILogService _logServiceImplementation;
 
     public LogService(string logFilePath)
     {
-        _currentTransactions = new List<Transaction>();
+        LogPath = logFilePath;
+        streamWriter = new StreamWriter(new FileStream(logFilePath, FileMode.Append, FileAccess.Write));
     }
 
-    public void LogTransaction(Transaction transaction)
+    public void Write(string logMessage)
     {
-        _currentTransactions.Add(transaction);
+        streamWriter.WriteLine($"{DateTime.Now}: {logMessage}");
+        streamWriter.Flush();
+    }
+
+    public string Read()
+    {
+        if (!File.Exists(LogPath))
+        {
+            throw new FileNotFoundException("Лог-файл не знайдено");
+        }
+        return File.ReadAllText(LogPath);
+    }
+
+    public void LogTransaction(Transaction p0)
+    {
+        _logServiceImplementation.LogTransaction(p0);
     }
 
     public string ReadLog()
@@ -37,38 +53,8 @@ public class LogService : ILogService
         _logServiceImplementation.LogTransaction(p0);
     }
 
-    public void WriteLogsToFile()
-    {
-        using StreamWriter writer = new StreamWriter(_logFilePath, append: true);
-        foreach (var transaction in _currentTransactions)
-        {
-            writer.WriteLine(transaction.ToString());
-        }
-        _currentTransactions.Clear();
-    }
-
-    public IEnumerable<string> ReadTransactionHistory()
-    {
-        if (!File.Exists(_logFilePath))
-            return new List<string>();
-
-        return File.ReadAllLines(_logFilePath);
-    }
-
     public void Dispose()
     {
-        _logServiceImplementation.Dispose();
-    }
-
-    public string LogPath => _logServiceImplementation.LogPath;
-
-    public void Write(string logInfo)
-    {
-        _logServiceImplementation.Write(logInfo);
-    }
-
-    public string Read()
-    {
-        return _logServiceImplementation.Read();
+        streamWriter.Dispose();
     }
 }

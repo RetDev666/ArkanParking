@@ -7,3 +7,10 @@ C:/Users/volodymyr.petryshyn/Desktop/Програмісти/CoolParking/CoolPark
 /Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ArkanParking.BL.AssemblyInfo.cs
 /Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ArkanParking.BL.csproj.CoreCompileInputs.cache
 /Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ArkanParking.BL.sourcelink.json
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/bin/Debug/net6.0/ArkanParking.BL.deps.json
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/bin/Debug/net6.0/ArkanParking.BL.dll
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/bin/Debug/net6.0/ArkanParking.BL.pdb
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ArkanParking.BL.dll
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/refint/ArkanParking.BL.dll
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ArkanParking.BL.pdb
+/Users/user/RiderProjects/ArkanParking/ArkanParking.BL/obj/Debug/net6.0/ref/ArkanParking.BL.dll

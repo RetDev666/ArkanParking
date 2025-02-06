@@ -10,35 +10,59 @@ namespace ArkanParking.BL.Models;
 // Тип конструктора показаний у тестах, і він повинен мати валідацію, яка також зрозуміла з тестів.
 // Статичний метод GenerateRandomRegistrationPlateNumber повинен повертати випадково згенерований унікальний ідентифікатор.
 
-public class Vehicle
-{
-    public string Id { get; private set; }
-    public VehicleType Type { get; private set; }
-    public decimal Balance { get; private set; }
 
-    public Vehicle(string id, VehicleType type, decimal initialBalance)
+    public class Vehicle
     {
-        if (!IsValidId(id))
-            throw new ArgumentException("Invalid vehicle ID format.");
+        public string Id { get; }
+        public VehicleType VehicleType { get; }
+        public decimal Balance { get; private set; }
 
-        Id = id;
-        Type = type;
-        Balance = initialBalance;
+        public Vehicle(string id, VehicleType vehicleType, decimal balance)
+        {
+            if (!IsValidId(id))
+            {
+                throw new ArgumentException("Неправильний формат номерного знаку");
+            }
+            if (balance < 0)
+            {
+                throw new ArgumentException("Початковий баланс не може бути від'ємним");
+            }
+            Id = id;
+            VehicleType = vehicleType;
+            Balance = balance;
+        }
+
+        public void AddBalance(decimal amount)
+        {
+            if (amount <= 0)
+            {
+                throw new ArgumentException("Сума поповнення повинна бути позитивною");
+            }
+            Balance += amount;
+        }
+
+        public void DeductBalance(decimal amount)
+        {
+            if (amount <= 0)
+            {
+                throw new ArgumentException("Сума списання повинна бути позитивною");
+            }
+            Balance -= amount;
+        }
+
+        public static string GenerateRandomRegistrationPlateNumber()
+        {
+            var random = new Random();
+            string letters = $"{(char)random.Next('A', 'Z' + 1)}{(char)random.Next('A', 'Z' + 1)}";
+            string numbers = random.Next(1000, 9999).ToString();
+            string lastLetters = $"{(char)random.Next('A', 'Z' + 1)}{(char)random.Next('A', 'Z' + 1)}";
+            return $"{letters}-{numbers}-{lastLetters}";
+        }
+
+        private static bool IsValidId(string id)
+        {
+            string pattern = @"^[A-Z]{2}-\d{4}-[A-Z]{2}$";
+            return Regex.IsMatch(id, pattern);
+        }
     }
 
-    private bool IsValidId(string id)
-    {
-        return System.Text.RegularExpressions.Regex.IsMatch(id, "^[A-Z]{2}-\\d{4}-[A-Z]{2}$");
-    }
-
-    public void TopUpBalance(decimal amount)
-    {
-        if (amount <= 0) throw new ArgumentException("Amount must be positive.");
-        Balance += amount;
-    }
-
-    public void Deduct(decimal amount)
-    {
-        Balance -= amount;
-    }
-}

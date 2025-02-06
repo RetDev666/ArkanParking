@@ -7,17 +7,20 @@ namespace ArkanParking.BL.Models;
 
 public static class Settings
 {
-    public static int Capacity { get; } = 10;
-    public static double InitialParkingBalance { get; } = 0;
-    public static int FeePeriodInSeconds { get; } = 5;
-    public static int LogPeriodInSeconds { get; } = 60;
-    public static double PenaltyCoefficient { get; } = 2.5;
+        public const int ParkingCapacity = 10;
+        public const decimal PenaltyCoefficient = 2.5m;
+        public const int FeePeriodSeconds = 5;
+        public const int LogPeriodSeconds = 60;
 
-    public static readonly Dictionary<VehicleType, decimal> Tariffs = new()
-    {
-        { VehicleType.PassengerCar, 2m },
-        { VehicleType.Truck, 5m },
-        { VehicleType.Bus, 3.5m },
-        { VehicleType.Motorcycle, 1m }
-    };
+        public static decimal GetFee(VehicleType type)
+        {
+            return type switch
+            {
+                VehicleType.PassengerCar => 2.0m,
+                VehicleType.Truck => 5.0m,
+                VehicleType.Bus => 3.5m,
+                VehicleType.Motorcycle => 1.5m,
+                _ => throw new ArgumentException("Невірний тип транспорту")
+            };
+        }
 }

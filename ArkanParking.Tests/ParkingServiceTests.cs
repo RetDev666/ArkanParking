@@ -151,7 +151,7 @@ namespace ArkanParking.BL.Tests
 
             var lastParkingTransactions = _parkingService.GetLastParkingTransactions();
 
-            Assert.Equal((double)17m, lastParkingTransactions.Sum(tr => tr.Sum));
+            Assert.Equal((decimal)17m, lastParkingTransactions.Sum(tr => tr.Sum));
         }
 
         [Fact]

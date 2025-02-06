@@ -1,47 +1,59 @@
 ﻿using System;
 using System.Timers;
 using ArkanParking.BL.Interfaces;
-using ArkanParking.BL.Models;
-using Timer = System.Threading.Timer;
 
-namespace ArkanParking.BL.Services;
 // TODO:створи клас TimerService, що реалізує інтерфейс ITimerService.
 // Сервіс повинен бути лише обгорткою над таймерами системи (System.Timers).
 
-public class TimerService : ITimerService
+
+
+
+namespace ArkanParking.BL.Services
 {
-    private readonly Timer _timer;
-
-    public event ElapsedEventHandler Elapsed
+    public class TimerService : ITimerService, IDisposable
     {
-        add => _timer.Elapsed += value;
-        remove => _timer.Elapsed -= value;
-    }
+        private readonly Timer timer;
 
-    public double Interval
-    {
-        get => _timer.Interval;
-        set => _timer.Interval = value;
-    }
+        public event ElapsedEventHandler Elapsed;
 
-    public TimerService(double interval)
-    {
-        _timer = new Timer(interval);
-        _timer.AutoReset = true; // Таймер автоматично повторюється
-    }
+        public double Interval
+        {
+            get => timer.Interval;
+            set => timer.Interval = value;
+        }
 
-    public void Start()
-    {
-        _timer.Start();
-    }
+        public TimerService()
+        {
+            timer = new Timer();
+            timer.AutoReset = true;
+            timer.Elapsed += OnElapsed;
+        }
 
-    public void Stop()
-    {
-        _timer.Stop();
-    }
+        private void OnElapsed(object sender, ElapsedEventArgs e)
+        {
+            Elapsed?.Invoke(sender, e);
+        }
 
-    public void Dispose()
-    {
-        _timer.Dispose();
+        public void Start()
+        {
+            timer.Start();
+        }
+
+        public void Stop()
+        {
+            timer.Stop();
+        }
+
+        public void Start(Action action, int interval)
+        {
+            Interval = interval;
+            timer.Elapsed += (sender, args) => action();
+            timer.Start();
+        }
+
+        public void Dispose()
+        {
+            timer.Dispose();
+        }
     }
 }

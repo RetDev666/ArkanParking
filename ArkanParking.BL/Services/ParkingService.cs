@@ -15,97 +15,106 @@ namespace ArkanParking.BL.Services;
 // Інші деталі реалізації залишаються на твій розсуд, але вони повинні відповідати вимогам інтерфейсу 
 // та тестам. Наприклад, у ParkingServiceTests можна знайти необхідний формат конструктора та правила валідації.
 
-public class ParkingService : IParkingService
+
+    public class ParkingService : IParkingService
     {
-        private List<Vehicle> _vehicles;
-        private decimal _parkingBalance;
-        private readonly ILogService _logService;
-        private IParkingService _parkingServiceImplementation;
+        private readonly List<Vehicle> vehicles;
+        private decimal parkingBalance;
+        private readonly int capacity;
+        private readonly ILogService logService;
+        private readonly ITimerService withdrawTimer;
+        private readonly ITimerService logTimer;
 
-        public ParkingService(ILogService logService)
+        public ParkingService(ITimerService withdrawTimer, ITimerService logTimer, ILogService logService)
         {
-            _vehicles = new List<Vehicle>();
-            _parkingBalance = 0;
-            _logService = logService;
+            this.withdrawTimer = withdrawTimer;
+            this.logTimer = logTimer;
+            this.logService = logService;
+            this.capacity = Settings.ParkingCapacity;
+            vehicles = new List<Vehicle>();
+            parkingBalance = 0;
         }
 
-        public bool ParkVehicle(Vehicle vehicle)
-        {
-            if (_vehicles.Count >= Settings.Capacity)
-                throw new InvalidOperationException("Паркінг переповнений.");
+        public decimal GetBalance() => parkingBalance;
 
-            _vehicles.Add(vehicle);
-            return true;
-        }
+        public int GetCapacity() => capacity;
 
-        public decimal GetBalance() => _parkingBalance;
+        public int GetFreePlaces() => capacity - vehicles.Count;
 
-        public int GetCapacity() => Settings.Capacity;
+        public ReadOnlyCollection<Vehicle> GetVehicles() => vehicles.AsReadOnly();
 
-        public int GetFreePlaces() => Settings.Capacity - _vehicles.Count;
-
-        public ReadOnlyCollection<Vehicle> GetVehicles() => _vehicles.AsReadOnly();
         public void AddVehicle(Vehicle vehicle)
         {
-            _parkingServiceImplementation.AddVehicle(vehicle);
-        }
-
-        void IParkingService.RemoveVehicle(string vehicleId)
-        {
-            _parkingServiceImplementation.RemoveVehicle(vehicleId);
-        }
-
-        public void TopUpVehicle(string vehicleId, decimal sum)
-        {
-            var vehicle = _vehicles.FirstOrDefault(v => v.Id == vehicleId);
-            if (vehicle == null)
-                throw new InvalidOperationException("Транспортний засіб не знайдено.");
-
-            vehicle.TopUpBalance(sum);
-        }
-
-        public TransactionInfo[] GetLastParkingTransactions()
-        {
-            return _parkingServiceImplementation.GetLastParkingTransactions();
-        }
-
-        public bool RemoveVehicle(string vehicleId)
-        {
-            var vehicle = _vehicles.FirstOrDefault(v => v.Id == vehicleId);
-            if (vehicle == null)
-                throw new InvalidOperationException("Транспортний засіб не знайдено.");
-
-            if (vehicle.Balance < 0)
-                throw new InvalidOperationException("Не можна видалити транспортний засіб із боргом.");
-
-            _vehicles.Remove(vehicle);
-            return true;
-        }
-
-        public void DeductParkingFee()
-        {
-            foreach (var vehicle in _vehicles)
+            if (vehicles.Count >= capacity)
             {
-                decimal fee = Settings.Tariffs[vehicle.Type];
+                throw new InvalidOperationException("Парковка заповнена!");
+            }
+            if (vehicles.Any(v => v.Id == vehicle.Id))
+            {
+                throw new ArgumentException("Транспортний засіб з таким ID вже існує.");
+            }
+            vehicles.Add(vehicle);
+            logService.Write($"Додано транспортний засіб: {vehicle.Id}");
+        }
+
+        public void RemoveVehicle(string vehicleId)
+        {
+            var vehicle = vehicles.FirstOrDefault(v => v.Id == vehicleId);
+            if (vehicle == null)
+            {
+                throw new ArgumentException("Транспортний засіб незнайдено!");
+            }
+            if (vehicle.Balance < 0)
+            {
+                throw new InvalidOperationException("Неможливо видалити транспортний засіб з негативним балансом.");
+            }
+            vehicles.Remove(vehicle);
+            logService.Write($"Видалено транспортний засіб: {vehicle.Id}");
+        }
+
+        public void TopUpVehicle(string vehicleId, decimal amount)
+        {
+            if (amount <= 0)
+            {
+                throw new ArgumentException("Сума поповнення повинна бути позитивною.");
+            }
+            var vehicle = vehicles.FirstOrDefault(v => v.Id == vehicleId);
+            if (vehicle == null)
+            {
+                throw new ArgumentException("Транспортний засіб незнайдено!");
+            }
+            vehicle.AddBalance(amount);
+            logService.Write($"Поповнено баланс {vehicle.Id} на {amount} у.о.");
+        }
+
+        public void ChargeVehicles()
+        {
+            foreach (var vehicle in vehicles)
+            {
+                decimal fee = Settings.GetFee(vehicle.VehicleType);
                 if (vehicle.Balance >= fee)
                 {
-                    vehicle.Deduct(fee);
-                    _parkingBalance += fee;
-                    _logService.LogTransaction(new TransactionInfo(vehicle.Id, fee));
+                    vehicle.DeductBalance(fee);
+                    parkingBalance += fee;
+                    logService.Write($"Списано {fee} у.о. з {vehicle.Id}. Залишок балансу: {vehicle.Balance}");
                 }
                 else
                 {
-                    decimal penaltyFee = fee + (fee - vehicle.Balance) * (decimal)Settings.PenaltyCoefficient;
-                    vehicle.Deduct(penaltyFee);
-                    _parkingBalance += penaltyFee;
-                    _logService.LogTransaction(new TransactionInfo(vehicle.Id, penaltyFee));
+                    decimal deficit = fee - vehicle.Balance;
+                    decimal penalty = deficit * Settings.PenaltyCoefficient;
+                    vehicle.DeductBalance(fee + penalty);
+                    parkingBalance += fee + penalty;
+                    logService.Write($"Списано {fee + penalty} у.о. (з урахуванням штрафу) з {vehicle.Id}. Баланс став негативним.");
                 }
             }
         }
 
-        public string ReadFromLog() => _logService.ReadLog();
-        public void Dispose()
+        public TransactionInfo[] GetLastParkingTransactions()
         {
-            _parkingServiceImplementation.Dispose();
+            return Array.Empty<TransactionInfo>();
         }
+
+        public string ReadFromLog() => logService.Read();
+
+        public void Dispose() => logService.Dispose();
     }

@@ -5,21 +5,16 @@ namespace ArkanParking.BL.Models;
 // Обов'язково реалізуй властивість Sum (типу decimal) — використовується у тестах.
 // Інші деталі реалізації залишаються на твій розсуд, вони повинні лише відповідати вимогам домашнього завдання.
 
-public class TransactionInfo
+public struct TransactionInfo
 {
-    public DateTime Timestamp { get; }
-    public string VehicleId { get; }
-    public decimal Sum { get; }
+    public decimal Sum { get; set; }
+    public string VehicleId { get; set; }
+    public DateTime Timestamp { get; set; }
 
-    public TransactionInfo(string vehicleId, decimal amount)
+    public TransactionInfo(decimal sum, string vehicleId, DateTime timestamp)
     {
-        Timestamp = DateTime.Now;
+        Sum = sum;
         VehicleId = vehicleId;
-        Sum = amount;
-    }
-
-    public override string ToString()
-    {
-        return $"{Timestamp}: Vehicle {VehicleId}, Amount: {Sum}";
+        Timestamp = timestamp;
     }
 }
