@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArkanParking.BL.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+35717e8bf2e7b951f5c51b799ff7439791bc0dbd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+029be9e24a482b9ca2770df116101c6263de601e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArkanParking.BL.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArkanParking.BL.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

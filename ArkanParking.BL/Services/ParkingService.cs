@@ -7,15 +7,8 @@ using System.Transactions;
 using ArkanParking.BL.Interfaces;
 using ArkanParking.BL.Models;
 
-namespace ArkanParking.BL.Services;
-// TODO: створи клас ParkingService, що реалізує інтерфейс IParkingService.
-// Якщо спробувати додати транспортний засіб на заповнену парковку, повинно бути викинуто InvalidOperationException.
-// Якщо спробувати видалити транспортний засіб із негативним балансом (боргом), також повинно бути викинуто InvalidOperationException.
-// Інші правила валідації та формат конструктора вказані в тестах.
-// Інші деталі реалізації залишаються на твій розсуд, але вони повинні відповідати вимогам інтерфейсу 
-// та тестам. Наприклад, у ParkingServiceTests можна знайти необхідний формат конструктора та правила валідації.
-
-
+namespace ArkanParking.BL.Services
+{
     public class ParkingService : IParkingService
     {
         private readonly List<Vehicle> vehicles;
@@ -24,15 +17,34 @@ namespace ArkanParking.BL.Services;
         private readonly ILogService logService;
         private readonly ITimerService withdrawTimer;
         private readonly ITimerService logTimer;
+        private bool timersStarted = false;
 
         public ParkingService(ITimerService withdrawTimer, ITimerService logTimer, ILogService logService)
         {
-            this.withdrawTimer = withdrawTimer;
-            this.logTimer = logTimer;
-            this.logService = logService;
+            this.withdrawTimer = withdrawTimer ?? throw new ArgumentNullException(nameof(withdrawTimer));
+            this.logTimer = logTimer ?? throw new ArgumentNullException(nameof(logTimer));
+            this.logService = logService ?? throw new ArgumentNullException(nameof(logService));
             this.capacity = Settings.ParkingCapacity;
             vehicles = new List<Vehicle>();
             parkingBalance = 0;
+        }
+
+        private void StartTimers()
+        {
+            if (!timersStarted)
+            {
+                withdrawTimer.Interval = 60000; // 60 секунд
+                withdrawTimer.Elapsed += (sender, e) => ChargeVehicles();
+                withdrawTimer.Start();
+
+                // Налаштовуємо таймер для логування
+                logTimer.Interval = 60000; // 60 секунд
+                logTimer.Elapsed += (sender, e) => logService.Write($"Поточний баланс парковки: {parkingBalance}");
+                logTimer.Start();
+
+                timersStarted = true;
+                logService.Write("Таймери запущено");
+            }
         }
 
         public decimal GetBalance() => parkingBalance;
@@ -53,7 +65,14 @@ namespace ArkanParking.BL.Services;
             {
                 throw new ArgumentException("Транспортний засіб з таким ID вже існує.");
             }
+            
             vehicles.Add(vehicle);
+            
+            if (vehicles.Count == 1)
+            {
+                StartTimers();
+            }
+            
             logService.Write($"Додано транспортний засіб: {vehicle.Id}");
         }
 
@@ -116,5 +135,11 @@ namespace ArkanParking.BL.Services;
 
         public string ReadFromLog() => logService.Read();
 
-        public void Dispose() => logService.Dispose();
+        public void Dispose()
+        {
+            withdrawTimer?.Dispose();
+            logTimer?.Dispose();
+            logService?.Dispose();
+        }
     }
+}

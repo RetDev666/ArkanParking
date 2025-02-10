@@ -25,6 +25,7 @@ namespace ArkanParking.ConsoleApp
                 Console.WriteLine("5. Поповнити баланс транспортного засобу");
                 Console.WriteLine("6. Показати всі транспортні засоби");
                 Console.WriteLine("7. Прочитати лог транзакцій");
+                Console.WriteLine("8. Перевірити статус таймерів.");
                 Console.WriteLine("0. Вийти");
 
                 Console.Write("Оберіть опцію: ");
@@ -53,6 +54,9 @@ namespace ArkanParking.ConsoleApp
                     case "7":
                         Console.WriteLine(parkingService.ReadFromLog());
                         break;
+                    case "8":
+                        ShowTimerStatus(withdrawTimer, logTimer);
+                        break;
                     case "0":
                         return;
                     default:
@@ -62,6 +66,19 @@ namespace ArkanParking.ConsoleApp
                 Console.WriteLine("Натисніть будь-яку клавішу для продовження...");
                 Console.ReadKey();
             }
+        }
+
+        private static void ShowTimerStatus(ITimerService withdrawTimer, ITimerService logTimer)
+        {
+            Console.WriteLine("\n--- Статус таймерів ---");
+            
+            Console.WriteLine("Таймер списання коштів:");
+            Console.WriteLine($"- Інтервал: {withdrawTimer.Interval} мс");
+            Console.WriteLine($"- Активний: {(withdrawTimer.IsActive ? "Так" : "Ні")}");
+            
+            Console.WriteLine("\nТаймер логування:");
+            Console.WriteLine($"- Інтервал: {logTimer.Interval} мс");
+            Console.WriteLine($"- Активний: {(logTimer.IsActive ? "Так" : "Ні")}");
         }
 
         private static void AddVehicleMenu(IParkingService parkingService)

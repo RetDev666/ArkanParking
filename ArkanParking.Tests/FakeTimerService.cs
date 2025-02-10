@@ -6,6 +6,7 @@ namespace ArkanParking.BL.Tests
 {
     public class FakeTimerService :  ITimerService
     {
+        public bool IsActive { get; }
         public double Interval { get; set; }
 
         public event ElapsedEventHandler Elapsed;
