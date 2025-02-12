@@ -15,7 +15,7 @@ public class LogService : ILogService
 {
     public string LogPath { get; }
     private readonly StreamWriter streamWriter;
-    private ILogService _logServiceImplementation;
+    private ILogService logServiceImplementation;
 
     public LogService(string logFilePath)
     {
@@ -40,17 +40,17 @@ public class LogService : ILogService
 
     public void LogTransaction(Transaction p0)
     {
-        _logServiceImplementation.LogTransaction(p0);
+        logServiceImplementation.LogTransaction(p0);
     }
 
     public string ReadLog()
     {
-        return _logServiceImplementation.ReadLog();
+        return logServiceImplementation.ReadLog();
     }
 
     public void LogTransaction(TransactionInfo p0)
     {
-        _logServiceImplementation.LogTransaction(p0);
+        logServiceImplementation.LogTransaction(p0);
     }
 
     public void Dispose()

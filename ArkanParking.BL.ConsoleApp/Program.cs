@@ -85,8 +85,26 @@ namespace ArkanParking.BL.ConsoleApp
         {
             Console.Write("Введіть ID транспортного засобу: ");
             string id = Console.ReadLine();
-            Console.Write("Оберіть тип (PassengerCar, Truck, Bus, Motorcycle): ");
+            Console.Write("Оберіть тип (1.Легкова машина, 2.Грузова машина, 3.Автобус, 4.Мотоцикил): ");
             string typeInput = Console.ReadLine();
+            switch (typeInput)
+            {
+                case "1":
+                   typeInput = "PassengerCar";
+                    break;
+                case "2":
+                    typeInput = "Truck";
+                    break;
+                case "3":
+                    typeInput = "Bus";
+                    break;
+                case "4":
+                    typeInput = "Motorcycle";
+                    break;
+                default:
+                    Console.WriteLine("Невірно вибарана опція!");
+                    break;
+            }
             Console.Write("Введіть початковий баланс: ");
             if (!decimal.TryParse(Console.ReadLine(), out decimal balance) || balance < 0)
             {
@@ -154,6 +172,7 @@ namespace ArkanParking.BL.ConsoleApp
         private static void ShowAllVehicles(IParkingService parkingService)
         {
             var vehicles = parkingService.GetVehicles();
+            
             if (vehicles.Count == 0)
             {
                 Console.WriteLine("Паркінг порожній.");

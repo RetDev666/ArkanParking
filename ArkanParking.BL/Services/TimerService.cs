@@ -6,38 +6,38 @@ namespace ArkanParking.BL.Services
 {
     public class TimerService : ITimerService, IDisposable
     {
-        private readonly Timer _timer;
-        private Action _currentAction;
-        private bool _isDisposed;
+        private readonly Timer timer;
+        private Action currentAction;
+        private bool isDisposed;
 
         public event ElapsedEventHandler Elapsed;
 
         public double Interval
         {
-            get => _timer.Interval;
+            get => timer.Interval;
             set
             {
                 if (value <= 0)
                     throw new ArgumentException("Інтервал має бути більше нуля.", nameof(value));
-                _timer.Interval = value;
+                timer.Interval = value;
             }
         }
 
-        public bool IsActive => _timer.Enabled;  
+        public bool IsActive => timer.Enabled;  
 
         public TimerService()
         {
-            _timer = new Timer();
-            _timer.AutoReset = true;
-            _timer.Elapsed += OnElapsed;
-            _isDisposed = false;
+            timer = new Timer();
+            timer.AutoReset = true;
+            timer.Elapsed += OnElapsed;
+            isDisposed = false;
         }
 
         private void OnElapsed(object sender, ElapsedEventArgs e)
         {
             try
             {
-                _currentAction?.Invoke();
+                currentAction?.Invoke();
                 Elapsed?.Invoke(sender, e);
             }
             catch (Exception ex)
@@ -49,19 +49,19 @@ namespace ArkanParking.BL.Services
         public void Start()
         {
             ThrowIfDisposed();
-            if (_timer.Enabled)
+            if (timer.Enabled)
             {
                 Console.WriteLine("Таймер уже працює.");
                 return;
             }
-            _timer.Start();
+            timer.Start();
             Console.WriteLine($"Таймер запустився о {DateTime.Now}. Інтервал: {Interval}мс");
         }
 
         public void Stop()
         {
             ThrowIfDisposed();
-            _timer.Stop();
+            timer.Stop();
             Console.WriteLine($"Таймер зупинився на {DateTime.Now}");
         }
 
@@ -72,7 +72,7 @@ namespace ArkanParking.BL.Services
             if (interval <= 0)
                 throw new ArgumentException("Інтервал має бути більше нуля.", nameof(interval));
 
-            _currentAction = action ?? throw new ArgumentNullException(nameof(action));
+            currentAction = action ?? throw new ArgumentNullException(nameof(action));
             Interval = interval;
             
             Start();
@@ -88,7 +88,7 @@ namespace ArkanParking.BL.Services
             Stop();
 
             const int chargingInterval = 60000; 
-            _currentAction = () =>
+            currentAction = () =>
             {
                 try
                 {
@@ -101,20 +101,20 @@ namespace ArkanParking.BL.Services
                 }
             };
 
-            Start(_currentAction, chargingInterval);
+            Start(currentAction, chargingInterval);
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!_isDisposed)
+            if (!isDisposed)
             {
                 if (disposing)
                 {
                     Stop();
-                    _timer.Elapsed -= OnElapsed;
-                    _timer.Dispose();
+                    timer.Elapsed -= OnElapsed;
+                    timer.Dispose();
                 }
-                _isDisposed = true;
+                isDisposed = true;
             }
         }
 
@@ -126,7 +126,7 @@ namespace ArkanParking.BL.Services
 
         private void ThrowIfDisposed()
         {
-            if (_isDisposed)
+            if (isDisposed)
             {
                 throw new ObjectDisposedException(nameof(TimerService));
             }
