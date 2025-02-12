@@ -1,5 +1,5 @@
-﻿using ArkanParking.BL.Interfaces;
-using System.Timers;
+﻿using System.Timers;
+using ArkanParking.BL.Interfaces;
 
 
 namespace ArkanParking.BL.Tests

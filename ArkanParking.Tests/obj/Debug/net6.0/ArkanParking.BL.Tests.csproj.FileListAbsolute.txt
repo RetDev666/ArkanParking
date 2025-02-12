@@ -98,10 +98,10 @@
 /Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ArkanParking.BL.Tests.AssemblyInfoInputs.cache
 /Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ArkanParking.BL.Tests.AssemblyInfo.cs
 /Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ArkanParking.BL.Tests.csproj.CoreCompileInputs.cache
-/Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ArkanParking.BL.Tests.sourcelink.json
-/Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ArkanPar.A32383D5.Up2Date
 /Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ArkanParking.BL.Tests.dll
 /Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/refint/ArkanParking.BL.Tests.dll
 /Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ArkanParking.BL.Tests.pdb
 /Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ArkanParking.BL.Tests.genruntimeconfig.cache
 /Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ref/ArkanParking.BL.Tests.dll
+/Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ArkanParking.BL.Tests.sourcelink.json
+/Users/user/RiderProjects/ArkanParking/ArkanParking.Tests/obj/Debug/net6.0/ArkanPar.A32383D5.Up2Date

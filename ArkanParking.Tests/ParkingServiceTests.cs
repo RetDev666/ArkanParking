@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
-
-using Xunit;
+using ArkanParking.BL.Interfaces;
+using ArkanParking.BL.Models; // Для класів Vehicle, VehicleType
+using ArkanParking.BL.Services; // Для ParkingService
 using FakeItEasy;
-using ArkanParking.BL.Models;  // Для класів Vehicle, VehicleType
-using ArkanParking.BL.Services;  // Для ParkingService
-using ArkanParking.BL.Interfaces; 
+using Xunit; 
 namespace ArkanParking.BL.Tests
 {
     public class ParkingServiceTests : IDisposable

@@ -33,12 +33,12 @@ namespace ArkanParking.BL.Services
         {
             if (!timersStarted)
             {
-                withdrawTimer.Interval = 60000; // 60 секунд
+                withdrawTimer.Interval = 60000; 
                 withdrawTimer.Elapsed += (sender, e) => ChargeVehicles();
                 withdrawTimer.Start();
 
-                // Налаштовуємо таймер для логування
-                logTimer.Interval = 60000; // 60 секунд
+                
+                logTimer.Interval = 60000; 
                 logTimer.Elapsed += (sender, e) => logService.Write($"Поточний баланс парковки: {parkingBalance}");
                 logTimer.Start();
 

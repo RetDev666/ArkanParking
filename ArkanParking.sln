@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArkanParking.BL", "ArkanPar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArkanParking.BL.Tests", "ArkanParking.Tests\ArkanParking.BL.Tests.csproj", "{0DBA95BF-14F2-4E07-9784-168BC5BC515A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArkanParking.ConsoleApp", "ArkanParking.ConsoleApp\ArkanParking.ConsoleApp.csproj", "{FB88EB79-70D3-40CC-B4F2-11C95AF26D27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArkanParking.BL.ConsoleApp", "ArkanParking.BL.ConsoleApp\ArkanParking.BL.ConsoleApp.csproj", "{E5551605-5CCD-4C6A-A1A5-C299BA9A3B49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{0DBA95BF-14F2-4E07-9784-168BC5BC515A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DBA95BF-14F2-4E07-9784-168BC5BC515A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DBA95BF-14F2-4E07-9784-168BC5BC515A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB88EB79-70D3-40CC-B4F2-11C95AF26D27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB88EB79-70D3-40CC-B4F2-11C95AF26D27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB88EB79-70D3-40CC-B4F2-11C95AF26D27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB88EB79-70D3-40CC-B4F2-11C95AF26D27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5551605-5CCD-4C6A-A1A5-C299BA9A3B49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5551605-5CCD-4C6A-A1A5-C299BA9A3B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5551605-5CCD-4C6A-A1A5-C299BA9A3B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5551605-5CCD-4C6A-A1A5-C299BA9A3B49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
