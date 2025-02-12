@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ArkanParking.BL.ConsoleApp/1.0.0": {
+        "dependencies": {
+          "ArkanParking.BL": "1.0.0"
+        },
+        "runtime": {
+          "ArkanParking.BL.ConsoleApp.dll": {}
+        }
+      },
+      "ArkanParking.BL/1.0.0": {
+        "runtime": {
+          "ArkanParking.BL.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ArkanParking.BL.ConsoleApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ArkanParking.BL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
