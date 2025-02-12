@@ -10,11 +10,15 @@ public struct TransactionInfo
     public decimal Sum { get; set; }
     public string VehicleId { get; set; }
     public DateTime Timestamp { get; set; }
+    public DateTime TransactionDate { get; set; }
+    public VehicleType VehicleType { get; set; }
 
     public TransactionInfo(decimal sum, string vehicleId, DateTime timestamp)
     {
         Sum = sum;
         VehicleId = vehicleId;
         Timestamp = timestamp;
+        TransactionDate = DateTime.Now;
+        VehicleType = VehicleType.PassengerCar;
     }
 }
